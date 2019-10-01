@@ -329,17 +329,41 @@ public class AgregarUsuario extends javax.swing.JInternalFrame
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(user.getText().equals("")||Pn.getText().equals(""))
         {
-            
-        }else
+            JOptionPane.showMessageDialog(this,"Campos necesarios vacios");
+        }
+        else
         {
-            String contra= String.valueOf(pass.getPassword());
-            
-           if( c.ValidarUsuario(dni.getText(), user.getText(), md5.getMD5(contra),Pn.getText() ,Sn.getText() , Pa.getText(), Sa.getText(), dir.getText(), tel.getText()))
-                           JOptionPane.showMessageDialog(this, "Usuario Creado","Advertencia",JOptionPane.WARNING_MESSAGE);
+            String con="";
+            int cont=0;
+            while(cont<dni.getText().length()-1)
+            {
+                con+=(dni.getText().charAt(cont));
+                cont++;
+            }
+            if(con.contains(" "))
+                JOptionPane.showMessageDialog(this, "La cedula es necesaria");
+            else
+            {
+                String ph="";
+                int val=0;
+                while(cont<tel.getText().length()-1)
+                {
+                    ph+=(tel.getText().charAt(val));
+                    val++;
+                }
+                if(ph.contains(" "))
+                    JOptionPane.showMessageDialog(this, "Campo vacio detectado");
+                else
+                {
+                    String contra= String.valueOf(pass.getPassword());
 
-           else
-                           JOptionPane.showMessageDialog(this, "Ya existe el usuario","Advertencia",JOptionPane.WARNING_MESSAGE);
+                   if( c.ValidarUsuario(dni.getText(), user.getText(), md5.getMD5(contra),Pn.getText() ,Sn.getText() , Pa.getText(), Sa.getText(), dir.getText(), tel.getText()))
+                    JOptionPane.showMessageDialog(this, "Usuario Creado","Advertencia",JOptionPane.WARNING_MESSAGE);
 
+                   else
+                    JOptionPane.showMessageDialog(this, "Ya existe el usuario","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
