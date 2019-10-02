@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -110,6 +112,11 @@ public class BuscarLibro extends javax.swing.JInternalFrame
         jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(102, 102, 102));
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 91, 150), 2));
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 190, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -120,6 +127,11 @@ public class BuscarLibro extends javax.swing.JInternalFrame
         jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(49, 91, 150), 2));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -199,6 +211,32 @@ public class BuscarLibro extends javax.swing.JInternalFrame
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        String cadena = Character.toString(evt.getKeyChar());
+        Pattern p = Pattern.compile("[/w{^a-zA-Z}]");
+        Matcher m = p.matcher(cadena);  
+        if(!m.find()||evt.getKeyChar()=='{'||evt.getKeyChar()=='}'||evt.getKeyChar()=='/'){
+            evt.consume();
+        } 
+        String Caracteres = jTextField1.getText();
+        if(Caracteres.length()>=39){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        String cadena = Character.toString(evt.getKeyChar());
+        Pattern p = Pattern.compile("[/w{^a-zA-Z}]");
+        Matcher m = p.matcher(cadena);  
+        if(!m.find()||evt.getKeyChar()=='{'||evt.getKeyChar()=='}'||evt.getKeyChar()=='/'){
+            evt.consume();
+        } 
+            String Caracteres = jTextField2.getText();
+            if(Caracteres.length()>=69){
+                evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

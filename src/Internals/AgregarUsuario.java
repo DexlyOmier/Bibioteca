@@ -346,7 +346,7 @@ public class AgregarUsuario extends javax.swing.JInternalFrame
             {
                 String ph="";
                 int val=0;
-                while(cont<tel.getText().length()-1)
+                while(val<tel.getText().length()-1)
                 {
                     ph+=(tel.getText().charAt(val));
                     val++;

@@ -1,6 +1,7 @@
 package Internals;
 
 import Conexion.BaseDeDatos;
+import javax.swing.JOptionPane;
 
 public class BorrarRevista extends javax.swing.JInternalFrame 
 {
@@ -52,7 +53,6 @@ public class BorrarRevista extends javax.swing.JInternalFrame
         jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("BORRAR");
-        jButton1.setActionCommand("BORRAR");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton1.setContentAreaFilled(false);
         jButton1.setOpaque(true);
@@ -120,8 +120,20 @@ public class BorrarRevista extends javax.swing.JInternalFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String issn=jFormattedTextField1.getText();
-        c.BorrarRevista("BorrarRevistas(?)",issn);
+        String con="";
+        int cont=0;
+        while(cont<jFormattedTextField1.getText().length()-1)
+        {
+            con+=(jFormattedTextField1.getText().charAt(cont));
+            cont++;
+        }
+        if(con.contains(" "))
+            JOptionPane.showMessageDialog(this, "Llene el codigo");
+        else
+        {
+            String issn=jFormattedTextField1.getText();
+            c.BorrarRevista("BorrarRevistas(?)",issn);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
